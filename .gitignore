@@ -2,3 +2,4 @@ reddit-dashboard.iml
 /.idea/
 src/producer/praw/classes/__pycache__/
 *.pyc
+/src/producer/praw/env.producer
