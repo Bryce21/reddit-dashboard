@@ -1,2 +1,3 @@
 praw
 confluent-kafka
+python-dotenv

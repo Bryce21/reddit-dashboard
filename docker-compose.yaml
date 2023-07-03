@@ -7,7 +7,6 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 22181:2181
-
   kafka:
     image: confluentinc/cp-kafka:latest
     depends_on:
@@ -31,3 +30,16 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS=kafka:9092
     depends_on:
       - kafka
+  praw-producer:
+    build: ./src/producer/praw
+    # image: praw-producer
+    container_name: praw-producer
+    depends_on:
+      - kafka
+    environment:
+      - HEALTHCHECK_INTERVAL=30.0
+      - CLIENT_ID
+      - CLIENT_SECRET
+      - USER_AGENT
+      - KAFKA_HOST=kafka
+      - KAFKA_PORT=9092
